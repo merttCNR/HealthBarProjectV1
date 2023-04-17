@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
                     playerBodyManager.l_arm.transform.parent = null;
                     playerBodyManager.l_armRb.isKinematic = false;
                     playerBodyManager.l_armRb.simulated = true;
+                    playerBodyManager.r_handWeapon.SetActive(true);
                 }
             }
 
