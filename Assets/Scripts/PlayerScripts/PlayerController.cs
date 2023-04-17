@@ -4,52 +4,40 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Inputs")]
     float xInput;
+    float yInput;
     [Header("Rigidbody2D")]
     Rigidbody2D playerRigidbody;
     [Header("Speed")]
-    float jumpSpeed = 30f;
-    float playerSpeed = 500f;
-    [Header("RaycastVar")]
-    private float raycastDistance = 1.5f;
-    public bool isGrounded;
-    public LayerMask groundLayer;
-
-
-    // Start is called before the first frame update
+    float jumpSpeed = 5f;
+    float playerSpeed = 20f;
+    [Header("GroundCheck")]
+    bool isGrounded;
+    
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-        
         InputChecker();
-        //GroundCheck();
-        PlayerJump();
         PlayerMove();
     }
     private void InputChecker(){
         xInput = Input.GetAxis("Horizontal");
+        yInput = Input.GetAxis("Vertical");
     }
     private void PlayerMove(){
-        playerRigidbody.velocity = new Vector2(xInput,0) * playerSpeed *Time.deltaTime;
+        playerRigidbody.velocity = Vector2.right * xInput * playerSpeed;
     }
     private void PlayerJump(){
-        if(Input.GetKeyDown(KeyCode.Space)){
-            playerRigidbody.AddForce(Vector2.up * jumpSpeed,ForceMode2D.Impulse);
-        }
+       // 2D'de jump kodu olmuyor??????
     }
-   /*private void GroundCheck(){
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance , groundLayer);
-        Debug.DrawRay(transform.position,Vector2.down,Color.red);
-        if(hit.collider != null){
+   private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.CompareTag("Ground")){
             isGrounded = true;
-            Debug.Log(hit.collider.tag);
         }
-       else{
+        else{
             isGrounded = false;
         }
-    }*/
+   }
 }

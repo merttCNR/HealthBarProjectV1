@@ -25,4 +25,5 @@ public class PlayerBodyManager : MonoBehaviour
         Rigidbody2D l_legRb = GetComponent<Rigidbody2D>();
         Rigidbody2D r_legRb = GetComponent<Rigidbody2D>();
     }
+    
 }
