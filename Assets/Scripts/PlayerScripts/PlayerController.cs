@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     float xInput;
     float yInput;
     [Header("Rigidbody2D")]
-    Rigidbody2D playerRigidbody;
+     Rigidbody2D playerRigidbody;
     [Header("Speed")]
     float jumpSpeed = 20f;
     float playerSpeed = 20f;

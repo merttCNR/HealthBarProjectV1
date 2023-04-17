@@ -5,8 +5,10 @@ public class PlayerManager : MonoBehaviour
     public int playerHealth = 10;
     PlayerBodyManager playerBodyManager;
     public BodyBarManager bodyBarManager;
+    private BoxCollider2D boxCollider2D;
     void Start()
     {
+        boxCollider2D = GetComponent<BoxCollider2D>();
         playerBodyManager = GetComponent<PlayerBodyManager>();
     }
     private void OnTriggerEnter2D(Collider2D other) {
@@ -19,6 +21,7 @@ public class PlayerManager : MonoBehaviour
                     playerBodyManager.l_arm.transform.parent = null;
                     playerBodyManager.l_armRb.isKinematic = false;
                     playerBodyManager.l_armRb.simulated = true;
+                    playerBodyManager.l_handWeapon.SetActive(false);
                     playerBodyManager.r_handWeapon.SetActive(true);
                 }
             }
@@ -51,6 +54,7 @@ public class PlayerManager : MonoBehaviour
                     playerBodyManager.r_leg.transform.parent = null;
                     playerBodyManager.r_legRb.isKinematic = false;
                     playerBodyManager.r_legRb.simulated = true;
+                    boxCollider2D.size = new Vector2(1.5f,1.9f);
                 }
             }
             if(playerHealth <= 1){
@@ -66,10 +70,13 @@ public class PlayerManager : MonoBehaviour
                     playerBodyManager.chestRb.isKinematic = false;
                     playerBodyManager.headRb.simulated = true;
                     playerBodyManager.chestRb.simulated = true;
-                    Time.timeScale = 0;
+                    Invoke("StopTime",3);
                     Debug.Log("Dead");
                 }
             }
         }
+    }
+    private void StopTime(){
+        Time.timeScale = 0;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerBodyManager : MonoBehaviour
     public GameObject l_leg;
     public GameObject r_leg;
     public GameObject r_handWeapon;
+    public GameObject l_handWeapon;
     [Header("BodyParts' Rigidbody")]
     public Rigidbody2D headRb;
     public Rigidbody2D l_armRb;
@@ -25,5 +26,5 @@ public class PlayerBodyManager : MonoBehaviour
         Rigidbody2D l_legRb = GetComponent<Rigidbody2D>();
         Rigidbody2D r_legRb = GetComponent<Rigidbody2D>();
     }
-    
+
 }
